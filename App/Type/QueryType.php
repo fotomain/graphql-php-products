@@ -16,8 +16,13 @@ class QueryType extends ObjectType
                     'product'=> [
                         'type'=>Types::product(),
                         'description'=> 'return Product by id',
+                        'args'=> [
+                            'id'=>Types::int()
+                        ],
                         'resolve'=> function ($root, $args) {
-                            return DB::selectOne("SELECT * FROM products_table");
+                            echo $args['id'];
+//                            return DB::selectOne("SELECT * FROM products_table WHERE id = 2 ");
+                            return DB::selectOne("SELECT * FROM products_table WHERE id = {$args['id']}");
                         }
                     ],
                     'allProducts'=> [

@@ -3,7 +3,29 @@ http://localhost:8000/graphql
 
 http://localhost:8000
 
-============= test2
+============= test2 components
+
+{
+   query: product (id:2) {
+       id
+       name
+       components {
+           id
+           name
+       }
+   }
+}
+
+
+============= test1-1
+
+{
+    query: allProducts {
+        id
+        name
+    }
+}
+
 
 ============= test1  
 

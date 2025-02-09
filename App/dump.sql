@@ -1,8 +1,8 @@
-
+--
 -- DROP DATABASE example_products;
 -- CREATE DATABASE example_products;
-
-
+--
+--
 -- DROP TABLE IF EXISTS `products_components_table`;
 -- DROP TABLE IF EXISTS `products_table`;
 
@@ -20,9 +20,15 @@ CREATE TABLE IF NOT EXISTS `products_components_table` (
 
 
 INSERT INTO `products_table` (`id`, `name`, `price`) VALUES
-                                                         (1, 'Milk', '10'),
-                                                         (2, 'Bread', '20'),
-                                                         (3, 'Oil', '30'),
+                                                         (1, 'Milk 1l', '10'),
+                                                         (101, 'pack 1l', '3'),
+                                                         (102, 'milk liquid', '2'),
+                                                         (103, 'paper 10cm', '1'),
+                                                         (2, 'Oil 2l ', '20'),
+                                                         (201, 'pack 2l', '5'),
+                                                         (202, 'oil liquid', '2'),
+                                                         (203, 'paper 20cm', '1'),
+                                                         (3, 'Bread', '30'),
                                                          (4, 'Potato', '40'),
                                                          (5, 'Eggs', '50'),
                                                          (6, 'Carot', '60');
@@ -30,20 +36,12 @@ INSERT INTO `products_table` (`id`, `name`, `price`) VALUES
 
 
 INSERT INTO `products_components_table` (`productId`, `componentId`) VALUES
-                                                                         (1, 2),
-                                                                         (2, 1),
-                                                                         (3, 4),
-                                                                         (4, 3),
-                                                                         (1, 5),
-                                                                         (5, 1),
-                                                                         (1, 6),
-                                                                         (6, 1),
-                                                                         (2, 5),
-                                                                         (5, 2),
-                                                                         (2, 6),
-                                                                         (6, 2),
-                                                                         (5, 6),
-                                                                         (6, 5);
+                                                                         (1, 101),
+                                                                         (1, 102),
+                                                                         (1, 103),
+                                                                         (2, 201),
+                                                                         (2, 202),
+                                                                         (2, 203);
 
 
 ALTER TABLE `products_components_table`
@@ -59,4 +57,5 @@ ALTER TABLE `products_table`
 ALTER TABLE `products_components_table`
     ADD CONSTRAINT `FK_products_components_table_productId` FOREIGN KEY (`productId`) REFERENCES `products_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `FK_products_components_table_componentId` FOREIGN KEY (`componentId`) REFERENCES `products_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
