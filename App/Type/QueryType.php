@@ -11,20 +11,21 @@ class QueryType extends ObjectType
     public function __construct()
     {
         $config=[
-            'fields'=>function(){
+            'fields'=>function() {
                 return [
                     'product'=> [
                         'type'=>Types::product(),
                         'description'=> 'return Product by id',
                         'resolve'=> function ($root, $args) {
-                            return DB::selectOne();
+                            return DB::selectOne("SELECT * FROM products_table");
                         }
                     ],
                     'allProducts'=> [
-                        'type'=>Types::product(),
-                        'description'=> 'return Product by id',
+                        'type'=>Types::listOf(Types::product()),
+                        'description'=> 'return List of Products',
                         'resolve'=> function ($root, $args) {
-                            return DB::select("SELECT * FROM products_table");
+                            $ret = DB::select("SELECT * FROM products_table");
+                            return $ret;
                         }
                     ],
                 ]; //return fields

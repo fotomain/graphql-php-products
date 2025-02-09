@@ -11,8 +11,10 @@ composer require webonyx/graphql-php
 composer update
 
 composer clearcache
-composer install
 composer update
+
+composer install
+
 
 composer require react/http:*
 

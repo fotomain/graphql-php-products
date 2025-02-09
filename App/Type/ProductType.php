@@ -15,7 +15,7 @@ class ProductType extends ObjectType
             'fields'=>function (){
                 return[
                   'id'=>[
-                      'type'=> Types::string(),
+                      'type'=> Types::int(),
                       'description'=> 'Product identifier',
                   ],
                   'name'=>[
