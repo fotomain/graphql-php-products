@@ -36,4 +36,10 @@ class DB
         return array_shift($result);
     }
 
+    public static function update($query){
+        $handler = self::$pdo->query($query);
+        $handler->execute();
+        return $handler->rowCount();
+    }
+
 }

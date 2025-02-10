@@ -25,8 +25,11 @@ $query = $input['query'];
 $variables = isset($input['variables']) ? json_decode($input['variables'], true) : null;
 
 $schema = new Schema([
-    'query'=>Types::query()
+    'query'=>Types::query(),
+    'mutation'=>Types::mutation()
 ]);
+
+//echo json_encode($schema);
 
 $result = GraphQL::executeQuery($schema,$query,null,null,$variables);
 

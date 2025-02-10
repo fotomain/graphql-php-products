@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Type\MutationType;
 use App\Type\ProductType;
 use App\Type\QueryType;
 use GraphQL\Type\Definition\Type;
@@ -37,6 +38,17 @@ class Types
     public static function listOf($type)
     {
         return Type::listOf($type);
+    }
+
+    public static function nonNull($type)
+    {
+        return Type::nonNull($type);
+    }
+
+    public static function mutation()
+    {
+        echo  "mutation1";
+        return self::$mutation ?: (self::$mutation = new MutationType());
     }
 
 }
