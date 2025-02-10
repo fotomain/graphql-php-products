@@ -41,7 +41,6 @@ class DB
         $handler->execute();
         return $handler->rowCount();
     }
-
     public static function create($query){
 //        echo "\n create start ".$query;
         try {
