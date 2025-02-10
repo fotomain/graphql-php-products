@@ -41,12 +41,14 @@ class DB
         $handler->execute();
         return $handler->rowCount();
     }
+
     public static function create($query){
 //        echo "\n create start ".$query;
         try {
-            $handler = self::$pdo->query($query);
-            echo "\n handler ".json_encode($handler);
-            echo "\n result OK".self::$pdo->lastInsertId();
+            $handler = self::$pdo->prepare($query);
+            $handler->execute();
+//            echo "\n handler ".json_encode($handler);
+//            echo "\n result OK".self::$pdo->lastInsertId();
             return self::$pdo->lastInsertId();
         }
         catch (\Exception $e){
@@ -57,6 +59,14 @@ class DB
             ];
             echo json_encode($result1);
         }
+    }
+
+    public static function delete($query){
+        $handler = self::$pdo->prepare($query);
+        $handler->execute();
+        $idn=0;
+        $handler->bindValue(":idn",$idn,PDO::PARAM_INT);
+        return $idn;
     }
 
 }

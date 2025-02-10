@@ -38,6 +38,19 @@ class MutationType extends ObjectType
                         }
                     ],
 
+                    'deleteProduct'=> [
+                        'type'=>Types::product(),
+                        'description'=>"delete 1 product",
+                        'args' => [
+                            'id'=>Types::nonNull(Types::int())
+                         ],
+                        'resolve' => function($root, $args) {
+                            $productReturn=DB::selectOne("SELECT * FROM products_table WHERE id = {$args['id']}");
+                            DB::delete("DELETE FROM products_table WHERE id = '{$args['id']}' ");
+                            return $productReturn;
+                        }
+                    ],
+
                     'updateProductPrice'=> [
                             'type'=>Types::product(),
                             'description'=>"update 1 product price",
