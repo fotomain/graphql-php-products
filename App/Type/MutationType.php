@@ -14,6 +14,30 @@ class MutationType extends ObjectType
         $config=[
             'fields'=>function () {
                 return [
+                    'createProduct'=> [
+                        'type'=>Types::product(),
+                        'description'=>"create 1 product",
+                        'args' => [
+                            'product'=>Types::inputProduct()
+                        ],
+                        'resolve' => function($root,$args){
+//                            echo  "resolve createProduct".json_encode($args);
+                            echo  "\n resolve createProduct ".$args['product']['id'];
+                            echo  "\n resolve createProduct ".$args['product']['name'];
+                            echo  "\n resolve createProduct ".$args['product']['price'];
+                            $productId = DB::create("
+                                INSERT INTO products_table
+                                    (id, name, price)
+                                VALUES (
+                                    '{$args['product']['id']}', '{$args['product']['name']}', '{$args['product']['price']}'                                      
+                                );  
+                            ");
+
+                            return DB::selectOne("SELECT * FROM products_table WHERE id = {$productId}");
+
+                        }
+                    ],
+
                     'updateProductPrice'=> [
                             'type'=>Types::product(),
                             'description'=>"update 1 product price",

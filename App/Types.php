@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Type\InputProductType;
 use App\Type\MutationType;
 use App\Type\ProductType;
 use App\Type\QueryType;
@@ -47,9 +48,13 @@ class Types
 
     public static function mutation()
     {
-        echo  "mutation1";
+//        echo  "mutation1";
         return self::$mutation ?: (self::$mutation = new MutationType());
     }
 
+    public static function inputProduct()
+    {
+        return self::$inputProduct ?: (self::$inputProduct = new InputProductType());
+    }
 }
 

@@ -21,8 +21,9 @@ $rawInput = file_get_contents('php://input');
 $input = json_decode($rawInput, true);
 $query = $input['query'];
 
-// Получение переменных запроса
-$variables = isset($input['variables']) ? json_decode($input['variables'], true) : null;
+
+$variables = isset($input['variables']) ? $input['variables'] : null;
+//$variables = isset($input['variables']) ? json_decode($input['variables'], true) : null;
 
 $schema = new Schema([
     'query'=>Types::query(),

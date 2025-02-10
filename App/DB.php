@@ -10,7 +10,7 @@ class DB
 
     public static function init($config)
     {
-        echo 'init1';
+//        echo 'init1';
         self::$pdo = new PDO(
             "mysql:host={$config['host']};dbname={$config['database']};",
             $config['username'],
@@ -40,6 +40,24 @@ class DB
         $handler = self::$pdo->query($query);
         $handler->execute();
         return $handler->rowCount();
+    }
+
+    public static function create($query){
+//        echo "\n create start ".$query;
+        try {
+            $handler = self::$pdo->query($query);
+            echo "\n handler ".json_encode($handler);
+            echo "\n result OK".self::$pdo->lastInsertId();
+            return self::$pdo->lastInsertId();
+        }
+        catch (\Exception $e){
+            $result1 = [
+                'error' => [
+                    'message' => $e->getMessage()
+                ]
+            ];
+            echo json_encode($result1);
+        }
     }
 
 }
