@@ -55,3 +55,4 @@ DB::init($config);
 $test = DB::select("SELECT * FROM products_table");
 echo json_encode($test);
 
+
