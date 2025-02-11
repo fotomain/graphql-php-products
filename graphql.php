@@ -7,6 +7,8 @@ use App\Types;
 use GraphQL\GraphQL;
 use GraphQL\Type\Schema;
 
+try {
+
 $config=[
     'host'=>'localhost',
     'database'=>'example_products',
@@ -33,6 +35,14 @@ $schema = new Schema([
 //echo json_encode($schema);
 
 $result = GraphQL::executeQuery($schema,$query,null,null,$variables);
+
+} catch (\Exception $e) {
+    $result = [
+        'error' => [
+            'message' => $e->getMessage()
+        ]
+    ];
+}
 
 header('Content-Type: application/json; charset=UTF-8');
 echo json_encode($result);

@@ -26,6 +26,28 @@ http://localhost:8000
     }
 }
 
+============= create
+VARIABLES
+
+{
+    "newProduct": {
+        "id":222,
+        "name":"Orange 1kg",
+        "price":22
+    }
+}
+
+PRODUCT
+    mutation ($newProduct:InputProduct) {
+            createProduct(product:$newProduct){
+                id
+                name
+                price
+            }
+        }
+
+
+
 
 ============= test1  
 
