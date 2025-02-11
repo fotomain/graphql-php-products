@@ -46,9 +46,6 @@ PRODUCT
             }
         }
 
-
-
-
 ============= test1  
 
 echo 'init0';
